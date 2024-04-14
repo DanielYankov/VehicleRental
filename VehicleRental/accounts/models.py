@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth import models as auth_models
 from django.core import validators
 from VehicleRental.core.validators import validate_only_letters
-from VehicleRental.vehicles.models import Vehicle
 
 
 class ChoicesEnumMixin:
@@ -48,8 +47,8 @@ class AppUser(auth_models.AbstractUser):
         max_length=Gender.max_len(),
     )
 
-    liked_cars = models.ManyToManyField(
-        Vehicle,
-        blank=True,
-    )
+    # liked_cars = models.ManyToManyField(
+    #     Vehicle,
+    #     blank=True,
+    # )
 

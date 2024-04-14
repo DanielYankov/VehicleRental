@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+{% block page_content %}
+    <div class="edit-delete edit-photo">
+        <form action="{% url 'add vehicle' %}" method="post" enctype="multipart/form-data">
+            {{ form.as_p }}
+            <button class="add-btn" type="submit">Add vehicle</button>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}

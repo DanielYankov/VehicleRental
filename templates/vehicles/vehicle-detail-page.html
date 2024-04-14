@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block page_content %}
+
+    <div class="container">
+        <div class="col-9">
+                {% include 'partials/vehicle-card.html' with vehicle=object %}
+        </div>
+    </div>
+{% endblock %}

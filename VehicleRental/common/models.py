@@ -87,39 +87,5 @@ class Order(models.Model):
     def __str__(self):
         return f'"{self.user}" orders "{self.vehicle}" from: {self.date_from} to : {self.date_to}'
 
-class Location(models.Model):
-    MIN_LOCATION_LEN = 2
-    MAX_LOCATION_LEN = 40
-    name = models.CharField(
-        max_length=40,
-        validators=(
-            validators.MinLengthValidator(MIN_LOCATION_LEN),
-            validate_only_letters,
-        )
-    )
-
-    def __str__(self):
-        return f'{self.name}'
-
-
-class Listing(models.Model):
-    vehicle =models.OneToOneField(
-        Vehicle,
-        on_delete=models.RESTRICT,
-    )
-
-    price_per_day = models.IntegerField(
-        validators=(
-            validators.MinValueValidator(0),
-        )
-    )
-
-    location = models.ForeignKey(
-        Location,
-        on_delete=models.RESTRICT,
-    )
-
-    def __str__(self):
-        return f'{self.vehicle} for {self.price_per_day}BGN in {self.location}'
 
 
