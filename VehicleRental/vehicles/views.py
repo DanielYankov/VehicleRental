@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
+
+from VehicleRental.common.models import VehicleReview
 from VehicleRental.core.utils import is_owner
 from VehicleRental.vehicles.forms import VehicleCreateForm, VehicleEditForm, VehicleDeleteForm
 from VehicleRental.vehicles.models import Vehicle
@@ -40,16 +42,8 @@ class DeleteVehicle(views.DeleteView):
     model = Vehicle
     template_name = 'vehicles/vehicle-delete-page.html'  # Path to your HTML template
     success_url = reverse_lazy('index')
-
-    # def delete(self, request, *args, **kwargs):
-    #     # Get the vehicle object
-    #     self.object = self.get_object()
-    #     self.object.vehiclereview_set.all().delete()
-    #     self.object.vehicleorder_set.all().delete()
-    #     return super().delete(request, *args, **kwargs)
     
-    def form_valid(self, form):
-        self.object.vehiclereview_set.all().delete()
-        # self.object.vehicleorder_set.all().delete()
-        return super().form_valid(self)
+    # def form_valid(self, *args):
+    #     self.object.vehiclereview_set.all().delete()
+    #     return super().form_valid(*args)
 

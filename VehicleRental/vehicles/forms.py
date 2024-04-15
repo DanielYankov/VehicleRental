@@ -13,7 +13,10 @@ class VehicleCreateForm(BaseVehicleForm):
 
 
 class VehicleEditForm(BaseVehicleForm):
-    pass
+    class Meta:
+        model = Vehicle
+        exclude = ('user', 'photo')
+        # TODO add photo change
 
 class VehicleDeleteForm(BaseVehicleForm):
 

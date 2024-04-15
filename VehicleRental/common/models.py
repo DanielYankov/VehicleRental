@@ -20,13 +20,13 @@ class UserRating(models.Model):
 
     writer = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         related_name='writer_set',
     )
 
     reciever = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         related_name='reciever_set',
     )
 
@@ -50,14 +50,14 @@ class VehicleReview(models.Model):
 
     vehicle = models.ForeignKey(
         Vehicle,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         blank=True,
         null=False,
     )
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -66,12 +66,13 @@ class VehicleReview(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
     )
 
     vehicle = models.ForeignKey(
         Vehicle,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
+
     )
 
     date_from = models.DateField(

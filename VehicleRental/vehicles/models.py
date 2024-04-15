@@ -26,7 +26,7 @@ class Vehicle(models.Model):
 
     user = models.ForeignKey(
         AppUser,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
     )
 
     make = models.CharField(
@@ -54,7 +54,7 @@ class Vehicle(models.Model):
 
     location = models.ForeignKey(
             Location,
-            on_delete=models.RESTRICT,
+            on_delete=models.CASCADE,
         )
 
     price_per_day = models.IntegerField(
