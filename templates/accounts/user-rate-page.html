@@ -1,9 +1,9 @@
 {% extends 'partials/base.html' %}
 {% block page_content %}
     <div class="edit-delete edit-photo">
-        <form action="{% url 'edit user' pk=object.pk%}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'rate user' pk=reciever.pk%}" method="post">
             {{ form.as_p }}
-            <button type="submit">Edit account</button>
+            <button type="submit">Rate User</button>
             {% csrf_token %}
         </form>
     </div>

@@ -40,6 +40,12 @@
     color: rgb(70, 65, 65);
 }
 
+.comment-data a img {
+    width: 20px;
+    height: 20px;
+}
+
+
 .comment-data h3 {
     margin-top: 5px;
 }

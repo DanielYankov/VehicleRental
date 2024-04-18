@@ -1,7 +1,8 @@
 from django.urls import path, include
 
 from VehicleRental.accounts.views import LogInView, SignUpView, LogOutView, UserEditView, UserDetailsView, \
-    UserDeleteView
+    UserDeleteView, UserOrdersView
+from VehicleRental.common.views import RateUser
 
 urlpatterns = (
     path('login/', LogInView.as_view(), name='login user'),
@@ -11,5 +12,8 @@ urlpatterns = (
         path('', UserDetailsView.as_view(), name='details user'),
         path('edit/', UserEditView.as_view(), name='edit user'),
         path('delete/', UserDeleteView.as_view(), name='delete user'),
+        path('rate/', RateUser, name='rate user'),
+        path('orders/', UserOrdersView, name='orders user'),
     ]))
+
 )

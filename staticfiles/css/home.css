@@ -7,6 +7,16 @@
     box-sizing: border-box;
 }
 
+.userDetails .bin-img-user-details-holder {
+    align-self: center;
+    margin-left: auto;
+}
+
+.userDetails .bin-img-user-details-holder .bin-img-user-details {
+    height: 24px;
+    width: 24px;
+}
+
 body {
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu,
         Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -216,7 +226,7 @@ main .container {
     overflow: hidden;
     width: 30px;
     height: 30px;
-    background: linear-gradient(to right, red, orange);
+    background: linear-gradient(to right, #262626, #999999);
     padding: 2px;
     margin-right: 8px;
 }
@@ -324,6 +334,18 @@ main .container {
     color: #999;
 }
 
+.details_price {
+    margin: 10px;
+    font-weight: 400;
+    color: #999;
+}
+
+.details:hover {
+    font-weight: bold;
+    color: black;
+    transition: all 0.1s ease-out;
+}
+
 .addComments {
     display: flex;
     align-items: center;
@@ -335,12 +357,22 @@ main .container {
 .addComments button {
     position: absolute;
     right: 30px;
-    color: #1d92ffcb;
+    color: black;
     font-weight: 500;
     font-size: 15px;
     border: none;
     background-color: inherit;
-    cursor: pointer;
+    /*cursor: pointer;*/
+    /*font-size: 22px;*/
+    /*display: block;*/
+    /*color: black;*/
+}
+
+.addComments button:hover {
+    font-weight: bold;
+    color: #1d92ffcb;
+    transition: all 0.1s ease-out;
+    background-color: inherit;
 }
 
 .addComments .reaction {

@@ -9,7 +9,7 @@ UserModel = get_user_model()
 class UserAdmin(auth_admin.UserAdmin):
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        ("Personal info", {"fields": ("first_name", "last_name", "email", "gender")}),
+        ("Personal info", {"fields": ("first_name", "last_name", "email", "gender", "currency")}),
         (
             "Permissions",
             {

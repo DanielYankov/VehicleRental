@@ -1,11 +1,14 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from VehicleRental.common.models import VehicleReview
+from VehicleRental.common.forms import VehicleReviewForm
+from VehicleRental.common.models import VehicleReview, Order
 from VehicleRental.core.utils import is_owner
-from VehicleRental.vehicles.forms import VehicleCreateForm, VehicleEditForm, VehicleDeleteForm
+from VehicleRental.vehicles.forms import VehicleCreateForm, VehicleEditForm, VehicleDeleteForm, VehicleOrderForm
 from VehicleRental.vehicles.models import Vehicle
+
 
 class AddVehicle(views.CreateView):
     template_name = 'vehicles/vehicle-add-page.html'
@@ -25,6 +28,9 @@ class DetailsVehicle(views.DetailView):
         context = super().get_context_data(**kwargs)
         current_vehicle = self.get_object()
         context['is_owner'] = is_owner(self.request, current_vehicle)
+        context['review_form'] = VehicleReviewForm()
+        context['reveiws'] = current_vehicle.vehiclereview_set.all
+        context['has_reviews'] = VehicleReview.objects.filter(vehicle=current_vehicle).exists()
         return context
 
 
@@ -42,8 +48,41 @@ class DeleteVehicle(views.DeleteView):
     model = Vehicle
     template_name = 'vehicles/vehicle-delete-page.html'  # Path to your HTML template
     success_url = reverse_lazy('index')
-    
-    # def form_valid(self, *args):
-    #     self.object.vehiclereview_set.all().delete()
-    #     return super().form_valid(*args)
+
+
+@login_required
+def OrderVehicle(request, pk):
+    user = request.user
+    vehicle = Vehicle.objects.filter(pk=pk).get()
+    def_order = VehicleOrderForm().save(commit=False)
+    def_order.vehicle = vehicle
+    if request.method == 'GET':
+        form = VehicleOrderForm(instance=def_order)
+    else:
+        form = VehicleOrderForm(request.POST)
+        if form.is_valid():
+
+            order = form.save(commit=False)
+            order.user = user
+            order.vehicle = vehicle
+            order.save()
+            return redirect('index')
+
+    context = {
+        'form': form,
+        'vehicle': vehicle,
+    }
+
+    return render(request, 'vehicles/vehicle-order-page.html', context)
+
+def DeleteOrderView(request, pk):
+    Order.objects.filter(pk=pk).delete()
+    return redirect('orders user', pk=request.user.pk)
+
+
+
+
+
+
+
 

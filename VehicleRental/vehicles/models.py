@@ -60,10 +60,12 @@ class Vehicle(models.Model):
     price_per_day = models.IntegerField(
         validators=(
             validators.MinValueValidator(0),
+            validators.MaxValueValidator(1000000),
         )
     )
 
-
+    def get_make_model_year(self):
+        return f'{self.make} {self.model} year:{self.year}'
     def __str__(self):
         return f'({self.pk}){self.make} {self.model} {self.year}'
 

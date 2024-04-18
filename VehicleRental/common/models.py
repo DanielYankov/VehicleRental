@@ -1,21 +1,36 @@
+from enum import Enum
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from django.core import validators
+
 from VehicleRental.core.validators import validate_only_letters
 from VehicleRental.vehicles.models import Vehicle
 
 UserModel = get_user_model()
+
+
+
 class UserRating(models.Model):
     MAX_RATING = 5
     MIN_RATING = 1
 
+    RATING_CHOICES = [
+        (1, 'Horrible'),
+        (2, 'Bad'),
+        (3, 'Avarage'),
+        (4, 'Good'),
+        (5, 'Excellent'),
+    ]
+
     rating = models.IntegerField(
-        validators=(
-            MaxValueValidator(MAX_RATING),
-            MinValueValidator(MIN_RATING),
-        )
+        # validators=(
+        #     MaxValueValidator(MAX_RATING),
+        #     MinValueValidator(MIN_RATING),
+        # ),
+        choices=RATING_CHOICES,
     )
 
     writer = models.ForeignKey(

@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from VehicleRental.accounts.models import Currency
 from VehicleRental.common.models import Order, UserRating, VehicleReview
 
 
@@ -21,4 +22,8 @@ class UserRatingAdmin(admin.ModelAdmin):
 
 @admin.register(VehicleReview)
 class VehicleReviewAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
     pass

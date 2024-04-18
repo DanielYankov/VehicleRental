@@ -2,7 +2,7 @@ from enum import Enum
 from django.db import models
 from django.contrib.auth import models as auth_models
 from django.core import validators
-from VehicleRental.core.validators import validate_only_letters
+from VehicleRental.core.validators import validate_only_letters, validate_all_capital
 
 
 class ChoicesEnumMixin:
@@ -18,6 +18,30 @@ class Gender(ChoicesEnumMixin, Enum):
     male = 'Male'
     female = 'Female'
     DoNotShow = 'Do not show'
+
+class Currency(models.Model):
+    MAX_CURRENCY_LEN = 3
+
+    name = models.CharField(
+        max_length=MAX_CURRENCY_LEN,
+        validators=(
+            validate_all_capital,
+        ),
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    price_to_bgn = models.FloatField(
+        validators=(
+            validators.MinValueValidator(0.0),
+        ),
+        null=False,
+        blank=False,
+    )
+
+    def __str__(self):
+        return self.name
 
 class AppUser(auth_models.AbstractUser):
     MIN_LEN_FIRST_NAME = 2
@@ -47,8 +71,18 @@ class AppUser(auth_models.AbstractUser):
         max_length=Gender.max_len(),
     )
 
-    # liked_cars = models.ManyToManyField(
-    #     Vehicle,
-    #     blank=True,
-    # )
+    avarage_rating = models.FloatField(
+        default=3,
+        null=True,
+        blank=True
+    )
+
+    currency = models.ForeignKey(
+        Currency,
+        on_delete=models.RESTRICT,
+        default=1,
+    )
+
+
+
 
