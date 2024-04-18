@@ -3,7 +3,6 @@
 <div class="card">
     <div class="top">
         <div class="userDetails">
-            <!-- Link to User Profile Page -->
             <a href="{% url 'details user' pk=vehicle.user.pk %}">
                 <div class="profilepic">
                     <div class="profile_img">
@@ -14,47 +13,32 @@
                 </div>
             </a>
             <h3>
-                <!-- Link to User Profile Page -->
                 <a href="{% url 'details user' pk=vehicle.user.pk %}">
-                    <!-- if user has first name and last name -->
-                    {{ vehicle.user }}                    <!-- else -->
-                    <!-- show user username -->
+                    {{ vehicle.user }}
                 </a>
                 <br>
-                <!-- if the photo has location -->
-
                 {% if vehicle.location %}
                     <span>
                         {{ vehicle.location }}
                     </span>
                 {% endif %}
-
                 {% if is_owner %}
                     <div class="edit-delete-btns">
-
-                        <!-- Link to Edit Pet Photo Page -->
                         <a href="{% url 'edit vehicle' pk=vehicle.pk %}">
                             <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
                                  alt="edit button">
                         </a>
-
-                        <!-- Link to Delete Pet Photo Page -->
                         <a href="{% url 'delete vehicle' pk=vehicle.pk %}">
                             <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
                         </a>
                     </div>
                 {% endif %}
-
             </h3>
         </div>
     </div>
-    <!-- End User Details and Image Location -->
-
-    <!-- Start Pet Photo -->
     <div class="imgBx" id="photo-{{ vehicle.pk }}">
         <img src="/media/{{ vehicle.photo }}" alt="post" class="cover">
     </div>
-
     <a href="{% url 'details vehicle' pk=vehicle.pk %}">
         <h4 class="details">See details</h4>
     </a>

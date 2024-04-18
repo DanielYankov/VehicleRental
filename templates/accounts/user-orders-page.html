@@ -5,7 +5,7 @@
     <div class="container">
         <div class="personal">
             <div class="edit">
-                <!-- User Username -->
+
                 <p>{{ user.username }}</p>
             </div>
             <div class="data">
@@ -15,14 +15,13 @@
 
 
         <div class="col-9">
-            <!-- Start Pet Photos Post Section -->
-            <!-- Start First Pet Photo Post -->
+
             {% for order in orders %}
 
                 <div class="card">
                     <div class="top">
                         <div class="userDetails">
-                            <!-- Link to User Profile Page -->
+
                             <a href="{% url 'details user' pk=order.vehicle.user.pk %}">
                                 <div class="profilepic">
                                     <div class="profile_img">
@@ -33,14 +32,10 @@
                                 </div>
                             </a>
                             <h3>
-                                <!-- Link to User Profile Page -->
                                 <a href="{% url 'details user' pk=order.vehicle.user.pk %}">
-                                    <!-- if user has first name and last name -->
-                                    {{ order.vehicle.user }}                    <!-- else -->
-                                    <!-- show user username -->
+                                    {{ order.vehicle.user }}
                                 </a>
                                 <br>
-                                <!-- if the photo has location -->
 
                                 {% if order.vehicle.location %}
                                     <span>
@@ -54,9 +49,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- End User Details and Image Location -->
 
-                    <!-- Start Pet Photo -->
                     <div class="imgBx" id="photo-{{ vehicle.pk }}">
                         <img src="/media/{{ order.vehicle.photo }}" alt="post" class="cover">
                     </div>
@@ -70,7 +63,7 @@
                     <h4 class="details_price">To: {{ order.date_to }}</h4>
                 </div>
             {% endfor %}
-            <!-- End First Pet Photo Post -->
+
         </div>
     </div>
 {% endblock %}

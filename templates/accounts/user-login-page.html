@@ -1,14 +1,12 @@
 {% extends 'partials/base.html' %}
 {% load placeholders %}
 {% block page_content %}
-    <!-- Start Login Section-->
+
     <div class="login-register-div">
         <div class="login-register-box">
             <h1>Vehicle Rental Company</h1>
 
-            <!-- Start Login Form-->
             <form action="{% url 'login user' %}" method = "post">
-{#                {{ form }}#}
                 {{ form.username|placeholder:'Username: ' }}
                 {{ form.password|placeholder:'Password: ' }}
                 <input type="hidden" name="next" value="{{ next }}">
@@ -19,10 +17,8 @@
         </div>
         <div class="second-option">
 
-
             <p>Don't have account? <a href="{% url 'signup user' %}">Sign up</a></p>
         </div>
     </div>
-    <!-- End Login Section-->
 
 {% endblock %}

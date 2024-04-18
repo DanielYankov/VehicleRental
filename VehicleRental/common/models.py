@@ -26,10 +26,6 @@ class UserRating(models.Model):
     ]
 
     rating = models.IntegerField(
-        # validators=(
-        #     MaxValueValidator(MAX_RATING),
-        #     MinValueValidator(MIN_RATING),
-        # ),
         choices=RATING_CHOICES,
     )
 
