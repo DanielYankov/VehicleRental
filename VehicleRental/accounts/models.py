@@ -54,14 +54,18 @@ class AppUser(auth_models.AbstractUser):
         validators = (
             validators.MinLengthValidator(MIN_LEN_FIRST_NAME),
             validate_only_letters,
-        )
+        ),
+        blank=True,
+        null=True,
     )
     last_name = models.CharField(
         max_length=MAN_LEN_LAST_NAME,
         validators=(
             validators.MinLengthValidator(MIN_LEN_LAST_NAME),
             validate_only_letters,
-        )
+        ),
+        blank=True,
+        null=True,
     )
     email = models.EmailField(
         unique=True,
@@ -69,10 +73,12 @@ class AppUser(auth_models.AbstractUser):
     gender = models.CharField(
         choices=Gender.choices(),
         max_length=Gender.max_len(),
+        blank=True,
+        null=True,
     )
 
     avarage_rating = models.FloatField(
-        default=3,
+        default=0,
         null=True,
         blank=True
     )

@@ -2,6 +2,10 @@
     color: initial;
 }
 
+.vehicle-make-model {
+    margin-inline: auto;
+}
+
 .pet-details {
     margin: 5px 0 5px -1px;
 }
@@ -29,6 +33,7 @@
 
 .comments .top {
     padding: 10px !important;
+    width: 100%;
 }
 
 .comment-data {
@@ -62,11 +67,11 @@
     margin-top: 0 !important;
 }
 
-.edit-delete-btns {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-}
+/*.edit-delete-btns {*/
+/*    position: absolute;*/
+/*    top: 20px;*/
+/*    right: 10px;*/
+/*}*/
 
 .edit-delete-btns img {
     width: 20px;

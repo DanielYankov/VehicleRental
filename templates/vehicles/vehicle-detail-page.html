@@ -17,9 +17,6 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="edit-delete-btns">
-                            {{ vehicle.get_make_model_year }}
-                        </div>
                         <h3>
                             <a href="{% url 'details user' pk=vehicle.user.pk %}">
                                 {{ vehicle.user }}
@@ -27,10 +24,15 @@
                             <br>
                             {% if vehicle.location %}
                                 <span>
-                        {{ vehicle.location }}
-                    </span>
+                                    {{ vehicle.location }}
+                                </span>
                             {% endif %}
-                            {% if is_owner %}
+
+                        </h3>
+                        <div class="vehicle-make-model">
+                            {{ vehicle.get_make_model_year }}
+                        </div>
+                        {% if is_owner %}
                                 <div class="edit-delete-btns">
                                     <a href="{% url 'edit vehicle' pk=vehicle.pk %}">
                                         <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
@@ -43,7 +45,6 @@
                                     </a>
                                 </div>
                             {% endif %}
-                        </h3>
                     </div>
                 </div>
                 <div class="imgBx" id="photo-{{ vehicle.pk }}">
@@ -77,11 +78,11 @@
                                             </div>
                                         </div>
                                         <p>
-                                            <a href="{% url 'details user' pk=review.user.pk %}">{{ review.user }}</a>
-                                         {{ review.text }}
+                                            <a style="color: #1d92ff; font-size: medium" href="{% url 'details user' pk=review.user.pk %}">{{ review.user }}</a>
+                                            {{ review.text }}
                                         </p>
                                         {% if review.user == request.user %}
-                                            <a href="{% url 'delete review' pk=review.pk %}">
+                                            <a style="margin-left: auto; margin-right: 5px" href="{% url 'delete review' pk=review.pk %}">
                                                 <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}"
                                                      alt="bin button">
                                             </a>

@@ -46,7 +46,7 @@ class Vehicle(models.Model):
     photo = models.ImageField(
         upload_to='car_photos',
         null = False,
-        blank = True,
+        blank = False,
         validators=(
             validate_image_less_than_5mb,
         )
