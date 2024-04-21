@@ -5,9 +5,11 @@
 
     <div class="container">
         <div class="col-9">
+            {#                {% include 'partials/vehicle-card.html' with vehicle=object %}#}
             <div class="card">
                 <div class="top">
                     <div class="userDetails">
+                        <!-- Link to User Profile Page -->
                         <a href="{% url 'details user' pk=vehicle.user.pk %}">
                             <div class="profilepic">
                                 <div class="profile_img">
@@ -17,39 +19,76 @@
                                 </div>
                             </div>
                         </a>
-                        <h3>
-                            <a href="{% url 'details user' pk=vehicle.user.pk %}">
-                                {{ vehicle.user }}
-                            </a>
-                            <br>
-                            {% if vehicle.location %}
-                                <span>
-                                    {{ vehicle.location }}
-                                </span>
-                            {% endif %}
-
-                        </h3>
-                        <div class="vehicle-make-model">
+                        <div class="edit-delete-btns">
                             {{ vehicle.get_make_model_year }}
                         </div>
-                        {% if is_owner %}
+                        <h3>
+                            <!-- Link to User Profile Page -->
+                            <a href="{% url 'details user' pk=vehicle.user.pk %}">
+                                <!-- if user has first name and last name -->
+                                {{ vehicle.user }}                    <!-- else -->
+                                <!-- show user username -->
+                            </a>
+                            <br>
+                            <!-- if the photo has location -->
+
+                            {% if vehicle.location %}
+                                <span>
+                        {{ vehicle.location }}
+                    </span>
+                            {% endif %}
+
+                            {% if is_owner %}
                                 <div class="edit-delete-btns">
+
+                                    <!-- Link to Edit Pet Photo Page -->
                                     <a href="{% url 'edit vehicle' pk=vehicle.pk %}">
                                         <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
                                              alt="edit button">
                                     </a>
 
+                                    <!-- Link to Delete Pet Photo Page -->
                                     <a href="{% url 'delete vehicle' pk=vehicle.pk %}">
                                         <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}"
                                              alt="bin button">
                                     </a>
                                 </div>
                             {% endif %}
+
+                        </h3>
+
                     </div>
+
                 </div>
+                <!-- End User Details and Image Location -->
+
+                <!-- Start Pet Photo -->
                 <div class="imgBx" id="photo-{{ vehicle.pk }}">
                     <img src="/media/{{ vehicle.photo }}" alt="post" class="cover">
                 </div>
+                <!-- End Pet Photo -->
+
+                <!-- Start Share Button -->
+                {#                <a href="#">#}
+                {#                    <svg aria-label="Share Post" class="_8-yf5 " color="#262626" fill="#262626"#}
+                {#                         height="24" role="img" viewBox="0 0 48 48" width="24">#}
+                {#                        <path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3#}
+                {#										3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6#}
+                {#										1 1.2 1.1h.2c.5 0 1-.3#}
+                {#										1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2#}
+                {#										6.1h35.5L18 18.7 5.2 6.1zm18.7#}
+                {#										33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">#}
+                {#                        </path>#}
+                {#                    </svg>#}
+                {#                </a>#}
+                <!-- End Share Button -->
+
+                <!-- End Like and Share Buttons -->
+
+                <!-- Link to Photo Details Page -->
+                {#                <a href="{% url 'details vehicle' pk=vehicle.pk %}">#}
+                {#                    <h4 class="details">See details</h4>#}
+                {#                </a>#}
                 <a href="{% url 'order vehicle' pk=vehicle.pk %}">
                     <h2 class="details">Order</h2>
                 </a>
@@ -67,22 +106,25 @@
                 {% if has_reviews %}
                     <h4 class="details_price">Reviews:</h4>
                     {% for review in vehicle.vehiclereview_set.all %}
+
+
                         <div class="comments">
                             <div class="top">
                                 <div class="userDetails">
                                     <div class="comment-data">
                                         <div class="profilepic">
                                             <div class="profile_img">
-                                                <div class="image"><img
+                                                <div class="image"> <!-- User Profile Image --> <img
                                                         src="{% static 'images/person.jpg' %}" alt="img8"></div>
                                             </div>
                                         </div>
-                                        <p>
-                                            <a style="color: #1d92ff; font-size: medium" href="{% url 'details user' pk=review.user.pk %}">{{ review.user }}</a>
-                                            {{ review.text }}
+                                        <p> <!-- Link to User Profile Details Page-->
+                                            <!-- User First and/or Last Name or username-->
+                                            <a href="{% url 'details user' pk=review.user.pk %}">{{ review.user }}</a>
+                                            <!-- User Comment --> : {{ review.text }}
                                         </p>
                                         {% if review.user == request.user %}
-                                            <a style="margin-left: auto; margin-right: 5px" href="{% url 'delete review' pk=review.pk %}">
+                                            <a href="{% url 'delete review' pk=review.pk %}">
                                                 <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}"
                                                      alt="bin button">
                                             </a>
@@ -90,25 +132,32 @@
                                     </div>
                                     <span>{{ review.publication_date_and_time }}</span></div>
                             </div>
-                        </div>
+                        </div> <!-- End Comments Section -->
                     {% endfor %}
                 {% else %}
                     <h4 class="details_price">Be the first to add a review:</h4>
                 {% endif %}
 
+
+
+                <!-- Start Add Comments Section -->
                 <div class="addComments">
                     <div class="reaction">
                         <h3>
                             <i class="far fa-smile"></i>
                         </h3>
                     </div>
+                    <!-- Start Add Comments Form -->
                     <form method="post" action="{% url 'reveiw vehicle' pk=vehicle.pk %}">
                         {{ review_form }}
                         <button type="submit">Post Review</button>
                         {% csrf_token %}
                     </form>
+                    <!-- End Add Comments Form -->
 
                 </div>
+                <!-- End Add Comments Section -->
+
 
             </div>
         </div>

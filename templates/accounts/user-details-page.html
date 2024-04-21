@@ -1,46 +1,58 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% block page_content %}
+    {#    <h2>{{ object }}</h2>#}
+    {#    <h3>Vehicles:{{ vehicle_count }}</h3>#}
+
+
+
+
     <div class="container">
         <div class="personal">
             <div class="edit">
+                <!-- User Username -->
                 <p>{{ object.username }}</p>
+
+                <!-- IF the viewer is the owner of the profile -->
+                <!-- Link to Edit Profile Page -->
                 {% if is_owner %}
                     <a href="{% url 'edit user' pk=object.pk %}">
-                        <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button">
+                        <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg'%}" alt="edit button">
                     </a>
 
+                    <!-- Link to Delete Profile Page -->
                     <a href="{% url 'delete user' pk=object.pk %}">
-                        <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
+                        <img class="bin-img" src="{% static 'images/icon-remove-22.jpg'%}" alt="bin button">
                     </a>
                     <a style="font-size: 20px" href="{% url 'orders user' pk=object.pk %}">
                         Order History
                     </a>
-
-                {% else %}
+                    <!-- End IF the viewer is the owner of the profile -->
+                    {% else %}
                     <a style="font-size: 20px" href="{% url 'rate user' pk=object.pk %}">
-                        {% for i in full_stars_count %}
-                            <img class="bin-img" src="{% static 'images/full-star.png' %}" alt="full star">
-                        {% endfor %}
-                        {% for i in empty_stars_count %}
-                            <img class="bin-img" src="{% static 'images/empty-star.png' %}" alt="empty star">
-                        {% endfor %}
-                        {{ ratings_count }} ratings
+                    {% for i in full_stars_count %}
+                        <img class="bin-img" src="{% static 'images/full-star.png'%}" alt="full star">
+                    {% endfor %}
+                    {% for i in empty_stars_count %}
+                        <img class="bin-img" src="{% static 'images/empty-star.png'%}" alt="empty star">
+                    {% endfor %}
+                    {{ ratings_count }} ratings
                     </a>
                 {% endif %}
             </div>
             <div class="data">
 
+                <!-- Total Number of Photos by the User -->
                 <span>{{ vehicle_count }}</span>
                 <p>Vehicles</p>
 
+                <!-- Total Number of Pets owned by the User -->
             </div>
-            {% if object.first_name and object.last_name %}
-                <h3 class="names">{{ object.get_full_name }}</h3>
-            {% endif %}
-            {% if object.gender %}
-                <p class="gender">{{ object.gender }}</p>
-            {% endif %}
+            <!-- User First and Last Name IF Added -->
+            <h3 class="names">{{ object.get_full_name }}</h3>
+
+            <!-- User Gender IF Added -->
+            <p class="gender">{{ object.gender }}</p>
         </div>
         {% for vehicle in vehicles %}
             <div class="col-9">

@@ -2,11 +2,12 @@
 <nav class="navbar">
         <div class="container">
             <div class="logo">
-
+                <!-- Link to Home Page -->
                 <a class="logo-icon" href="{% url 'index' %}">
                     <img width="50px" src="{% static "images/car-icon.jpg"%}" alt="img1">
                 </a>
 
+                <!-- Link to Home Page -->
                 <a class="home logo-text nav-text" href="{% url 'index' %}">
                     Vehicle rental company
                 </a>
@@ -16,21 +17,21 @@
                 <ul class="nav-group">
                     {% if request.user.is_staff %}
                         <li class="nav-item">
-
+                        <!-- Link to Add Pet Page -->
                         <a class="nav-text" href="{% url 'admin:index' %}">
                             Administration
                         </a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-
+                        <!-- Link to Add Pet Page -->
                         <a class="nav-text" href="{% url 'add vehicle' %}">
                             Add Vehicle
                         </a>
                     </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-
+                            <!-- Link to Profile Page -->
                             <a class="nav-text" href="{% url 'details user' pk=request.user.pk%}">
                                 Account({{ request.user.username }})
                             </a>
@@ -44,13 +45,13 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-
+                            <!-- Link to Profile Page -->
                             <a class="nav-text" href="{% url 'login user'%}">
                                 Log In
                             </a>
                         </li>
                         <li class="nav-item">
-
+                            <!-- Link to Profile Page -->
                             <a class="nav-text" href="{% url 'signup user'%}">
                                 Sign Up
                             </a>

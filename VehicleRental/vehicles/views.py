@@ -6,7 +6,7 @@ from django.views import generic as views
 from VehicleRental.common.forms import VehicleReviewForm
 from VehicleRental.common.models import VehicleReview, Order
 from VehicleRental.core.utils import is_owner
-from VehicleRental.vehicles.forms import VehicleCreateForm, VehicleEditForm, VehicleOrderForm
+from VehicleRental.vehicles.forms import VehicleCreateForm, VehicleEditForm, VehicleDeleteForm, VehicleOrderForm
 from VehicleRental.vehicles.models import Vehicle
 
 
@@ -16,6 +16,7 @@ class AddVehicle(views.CreateView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
+        # Set the user of the vehicle to the current user before saving
         form.instance.user = self.request.user
         return super().form_valid(form)
 
@@ -36,7 +37,7 @@ class DetailsVehicle(views.DetailView):
 class EditVehicle(views.UpdateView):
     model = Vehicle
     form_class = VehicleEditForm
-    template_name = 'vehicles/vehicle-edit-page.html'
+    template_name = 'vehicles/vehicle-edit-page.html'  # Path to your HTML template
 
     def get_success_url(self):
         return reverse_lazy('details vehicle', kwargs={
@@ -45,7 +46,7 @@ class EditVehicle(views.UpdateView):
 
 class DeleteVehicle(views.DeleteView):
     model = Vehicle
-    template_name = 'vehicles/vehicle-delete-page.html'
+    template_name = 'vehicles/vehicle-delete-page.html'  # Path to your HTML template
     success_url = reverse_lazy('index')
 
 

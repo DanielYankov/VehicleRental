@@ -1,11 +1,11 @@
 {% extends 'partials/base.html' %}
 {% load placeholders %}
 {% block page_content %}
-
+    <!-- Start Register Section -->
     <div class="login-register-div">
         <div class="login-register-box">
             <h1>Vehicle Rental Company</h1>
-
+            <!-- Start Register Form -->
             <form action="{% url 'signup user' %}" method="post">
                 {{ form.username|placeholder:'Username: ' }}
                 {{ form.email|placeholder:'Email: ' }}
@@ -14,14 +14,15 @@
                 <button type="submit">Register</button>
                 {% csrf_token %}
             </form>
+            <!-- End Register Form -->
 
         </div>
         <div class="second-option">
 
-
+            <!-- Link to Login Page -->
             <p>Have an account? <a href="{% url 'login user' %}">Log in</a></p>
         </div>
     </div>
-
+    <!-- End Register Section -->
 
 {% endblock %}

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views import generic as views
 
-from VehicleRental.common.forms import UserRateForm, VehicleReviewForm
+from VehicleRental.common.forms import SearchVehicleForm, UserRateForm, VehicleReviewForm
 from VehicleRental.common.models import UserRating, VehicleReview
 from VehicleRental.vehicles.models import Vehicle
 

@@ -1,10 +1,14 @@
 {% extends 'partials/base.html' %}
 {% block page_content %}
+    <!-- Starts Delete Pet Section -->
     <div class="edit-delete edit-photo">
         <h2>Are you sure you want to delete {{ object }}</h2>
+        <!-- Starts Delete Pet Form -->
         <form method = "post" action="{% url 'delete vehicle' pk=object.pk %}">
             <button class="delete-btn" type="submit">Delete</button>
             {% csrf_token %}
         </form>
+        <!-- End Delete Pet Form -->
     </div>
+    <!-- End Delete Pet Section -->
 {% endblock %}

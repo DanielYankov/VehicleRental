@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from VehicleRental.common.models import Order
+from VehicleRental.common.models import VehicleReview, Order
 from VehicleRental.vehicles.models import Vehicle
 
 class BaseVehicleForm(forms.ModelForm):
@@ -38,6 +38,8 @@ class VehicleOrderForm(forms.ModelForm):
             'vehicle': forms.HiddenInput(),
         }
 
+    # def clean(self):
+    #     super().clean()
     def clean_date_to(self):
         date_to = self.cleaned_data['date_to']
         date_from = self.cleaned_data['date_from']

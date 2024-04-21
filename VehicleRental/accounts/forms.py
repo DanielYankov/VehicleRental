@@ -17,3 +17,7 @@ class UserCreateForm(auth_forms.UserCreationForm):
         model = UserModel
         fields = ("username", "email",)
         field_classes = {"username": auth_forms.UsernameField}
+
+    # password1 = forms.CharField(
+    #     label= "Email",
+    # )
